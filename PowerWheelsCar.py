@@ -108,68 +108,19 @@ while(1):
         print("xd")
         cmd = x.decode('UTF-8').split(':')[1].replace("'",'')
         speed = x.decode('UTF-8').split(':')[0].replace("'",'')
-        direction = x.decode('UTF-8').split(':')[2].replace("'",'')
         sspeed = x.decode('UTF-8').split(':')[3].replace("'",'')
         if cmd=="f":
             #r.ChangeDutyCycle(float(speed))
             #l.ChangeDutyCycle(float(speed))
             print("f")
             if float(speed) == 0.0:
-                if direction != "N":
-                  GPIO.output(in1,GPIO.HIGH)
-                  motor.ChangeDutyCycle(float(sspeed))
-                else:
-                    motor.ChangeDutyCycle(0)
+                motor.ChangeDutyCycle(0)
             else:
                 GPIO.output(in1,GPIO.HIGH)
-                if direction != "N":
-                    if direction == "L":
-                        l.ChangeDutyCycle(float(speed))
-                        test = float(sspeed) / 10
-                        thrustperc = (float(sspeed)) / 100
-                        SLtrackspd = float(thrustperc) * float(speed)
-                        #print(thrustperc + "XDD: " + str(SLtrackspd))
-                        r.ChangeDutyCycle(test)
-                        # r.ChangeDutyCycle(float(speed) - 10.0)
-                        #l.ChangeDutyCycle(float(speed))
-                    elif direction == "R":
-                        r.ChangeDutyCycle(float(speed))
-                        test = float(sspeed) / 10
-                        thrustperc = (float(sspeed) - 10) / 100
-                        SLtrackspd = float(thrustperc) * float(speed)
-                        #print(thrustperc + "XDD: " + str(SLtrackspd))
-                        l.ChangeDutyCycle(test)
-                else:
-                    r.ChangeDutyCycle(float(speed))
-                    l.ChangeDutyCycle(float(speed))
+                motor.ChangeDutyCycle(float(speed))
         elif cmd=="b":
             GPIO.output(in1,GPIO.LOW)
-            GPIO.output(in2,GPIO.HIGH)
-            GPIO.output(in3,GPIO.LOW)
-            GPIO.output(in4,GPIO.HIGH)
-            #l.ChangeDutyCycle(float(speed))
-            #r.ChangeDutyCycle(float(speed))
-            if direction != "N":
-                if direction == "L":
-                    l.ChangeDutyCycle(float(speed))
-                    test = float(sspeed) / 10
-                    thrustperc = (float(sspeed)) / 100
-                    SLtrackspd = float(thrustperc) * float(speed)
-                    #print(thrustperc + "XDD: " + str(SLtrackspd))
-                    r.ChangeDutyCycle(test)
-                    # r.ChangeDutyCycle(float(speed) - 10.0)
-                    #l.ChangeDutyCycle(float(speed))
-                elif direction == "R":
-                    r.ChangeDutyCycle(float(speed))
-                    test2 = float(sspeed) / 10
-                    thrustperc = (float(sspeed) - 10) / 100
-                    SLtrackspd = float(thrustperc) * float(speed)
-                    #print(thrustperc + "XDD: " + str(SLtrackspd))
-                    l.ChangeDutyCycle(test2)
-            else:
-                r.ChangeDutyCycle(float(speed))
-                l.ChangeDutyCycle(float(speed))
-
+            motor.ChangeDutyCycle(float(speed))
     elif x==bytes('s', 'UTF-8'):
         print("stop")
         GPIO.output(in1,GPIO.LOW)
