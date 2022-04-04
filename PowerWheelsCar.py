@@ -7,33 +7,21 @@ trigPin = 23
 echoPin = 24
 MAX_DISTANCE = 10000
 timeOut=MAX_DISTANCE*60
-in3 = 16
-in4 = 20
-enb = 21
 in1 = 14
-in2 = 15
 ena = 18
 temp1=1
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(trigPin, GPIO.OUT) # set trigPin to output mode
 GPIO.setup(echoPin, GPIO.IN)
 GPIO.setup(in1,GPIO.OUT)
-GPIO.setup(in2,GPIO.OUT)
 GPIO.setup(ena,GPIO.OUT)
 GPIO.output(in1,GPIO.LOW)
-GPIO.output(in2,GPIO.LOW)
-GPIO.setup(in3,GPIO.OUT)
-GPIO.setup(in4,GPIO.OUT)
-GPIO.setup(enb,GPIO.OUT)
-GPIO.output(in3,GPIO.LOW)
-GPIO.output(in4,GPIO.LOW)
 buzzerPin=17
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
-l=GPIO.PWM(ena,1000)
-r=GPIO.PWM(enb,1000)
-l.start(25)
-r.start(25)
+motor=GPIO.PWM(ena,1000)
+
+motor.start(25)
 bd_addr = "DC:A6:32:6B:38:BD"
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
@@ -128,28 +116,12 @@ while(1):
             print("f")
             if float(speed) == 0.0:
                 if direction != "N":
-                    if direction == "L":
-                        GPIO.output(in1,GPIO.HIGH)
-                        GPIO.output(in2,GPIO.LOW)
-                        GPIO.output(in3,GPIO.LOW)
-                        GPIO.output(in4,GPIO.HIGH)
-                        l.ChangeDutyCycle(float(sspeed))
-                        r.ChangeDutyCycle(float(sspeed))
-                    elif direction == "R":
-                        GPIO.output(in1,GPIO.LOW)
-                        GPIO.output(in2,GPIO.HIGH)
-                        GPIO.output(in3,GPIO.HIGH)
-                        GPIO.output(in4,GPIO.LOW)
-                        l.ChangeDutyCycle(float(sspeed))
-                        r.ChangeDutyCycle(float(sspeed))
+                  GPIO.output(in1,GPIO.HIGH)
+                  motor.ChangeDutyCycle(float(sspeed))
                 else:
-                    l.ChangeDutyCycle(0)
-                    r.ChangeDutyCycle(0)
+                    motor.ChangeDutyCycle(0)
             else:
                 GPIO.output(in1,GPIO.HIGH)
-                GPIO.output(in2,GPIO.LOW)
-                GPIO.output(in3,GPIO.HIGH)
-                GPIO.output(in4,GPIO.LOW)
                 if direction != "N":
                     if direction == "L":
                         l.ChangeDutyCycle(float(speed))
