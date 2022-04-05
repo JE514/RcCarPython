@@ -65,11 +65,7 @@ while True:
             if event.type == pygame.JOYAXISMOTION:
                 speed = round(j.get_axis(1) * -100)
                 direction = round(j.get_axis(3) * 100) #axis 0
-                if direction > stickDeadband:
-                    #RIGHT
-                elif direction < -stickDeadband:
-                    #LEFT
-                else:
+                if direction < stickDeadband && direction > -stickDeadband:
                     direction = 0
                 print("M:" + str(speed) + ":D:" + str(direction))
                 sock.send("M:" + str(speed) + ":D:" + str(direction))
