@@ -27,10 +27,10 @@ while True:
     try:
         events = pygame.event.get()
         for event in events:
-            #if event.type == pygame.JOYBUTTONDOWN:
-                #sock.send("ho")
-            #elif event.type == pygame.JOYBUTTONUP:
-               # sock.send("ho2")
+            if event.type == pygame.JOYBUTTONDOWN:
+                sock.send("ho")
+            elif event.type == pygame.JOYBUTTONUP:
+               sock.send("ho")
             if event.type == pygame.JOYAXISMOTION:
                 speed = round(j.get_axis(1), 1) * -100
                 direction = round(j.get_axis(3), 1)
