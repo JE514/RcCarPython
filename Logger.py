@@ -1,11 +1,11 @@
+import logging
 
-def logger(msg):
-  print(msg)
-  #log to file
-  #log to controller console
-  
-def logger(msg, var):
-  data = msg.replace("{}", var)
-  print(data)
-  #log to file
-  #log to controller console
+def Logger(): 
+  logger = logging.getLogger('robotLog')
+  logger.setLevel(logging.DEBUG)
+  # create file handler which logs even debug messages
+  fh = logging.FileHandler('robotLog.log')
+  fh.setLevel(logging.INFO)
+  logger.addHandler(fh)
+  return logger.getLogger()
+
