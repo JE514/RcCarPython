@@ -28,7 +28,7 @@ def return_data():
     except OSError:
         pass
 bluetoothAddress = "DC:A6:32:6B:38:BD"
-stickDeadband = 0.2
+stickDeadband = 5
 
 
 sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
