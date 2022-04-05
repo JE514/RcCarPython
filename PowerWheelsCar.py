@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 import time
 from sensor import ultrasonicRead
+from Logger import Logger
 #from rccarsensor import ultrasonicRead
 
 
@@ -13,6 +14,7 @@ temp1=1
 buzzerPin=17
 directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
 
+logger = Logger("robotLog")
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1,GPIO.OUT)
@@ -30,12 +32,14 @@ port = 1
 server_socket = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 server_socket.bind((bd_addr, bluetooth.PORT_ANY))
 server_socket.listen(port)
-print("Bluetooth Bind: listening on port " + str(port))
+logger.info("Bluetooth Bind: Listening on port " + str(port))
+#print("Bluetooth Bind: listening on port " + str(port))
 def enabledAlert(length, amount):
     buzz=amount
     while (buzz > 0):
         if buzz > 0:
-            print("xd")
+            logger.info("Buzzer Alert")
+            #print("xd")
             GPIO.setmode(GPIO.BCM)
             GPIO.output(buzzerPin,GPIO.HIGH)
             sleep(length)
@@ -49,12 +53,16 @@ def enabledAlert(length, amount):
 
 #enabledAlert(0.1, 3)
 bluetooth.advertise_service(server_socket, "SampleServer", service_classes=[bluetooth.SERIAL_PORT_CLASS],profiles=[bluetooth.SERIAL_PORT_PROFILE])
-print("Bluetooth: Advertising service!")
+logger.info("Bluetooth: Advertising Service!")
+#print("Bluetooth: Advertising service!")]
+
 
 client_socket, address = server_socket.accept()
-print("Bluetooth: Accepting client!")
+logger.info("Bluetooth: Accepting client!")
+#print("Bluetooth: Accepting client!")
 #server_socket.send('\x1a')
-print("Bluetooth device Is connected!")
+logger.info("Bluetooth: Device connected!")
+#print("Bluetooth device Is connected!")
 #enabledAlert(0.2, 2)
 
 
@@ -68,41 +76,52 @@ def return_data():
             return data
     except OSError:
         pass
-print("\n")
-print("Robot Program Started...")
-print("\n")
+#print("\n")
+#print("Robot Program Started...")
+#print("\n")
+logger.info("\n")
+logger.info("Robot Program Started...")
+logger.info("\n")
+
 from threading import Thread
 def sendCollisionWarning():
     while True:
         distance = ultrasonicRead()
         if distance < 10:
-            print("Collison warning")
+            logger.info("Collision warning")
+            #print("Collison warning")
             client_socket.send("cw")
         
 thread=Thread(target=sendCollisionWarning)
 thread.start()
 
 while(1):
-    print('Loop')
+    logger.info("Loop")
+    #print('Loop')
     x=return_data()
     if x == None:
-        print("disconnected")
+        logger.info("Bluetooth: disconnected!")
+        #print("disconnected")
         disconnected = True
         client_socket, address = server_socket.accept()
         if disconnected == True:
-            print("Reconnected!")
+            logger.info("Bluetooth: Reconnected!")
+            #print("Reconnected!")
 
     elif x==bytes('r', 'UTF-8'):
-        print("run")
+        logger.info("run")
+        #print("run")
         if(temp1==1):
          GPIO.output(in1,GPIO.HIGH)
          GPIO.output(in2,GPIO.LOW)
-         print("forward")
+         logger.info("forward")
+         #print("forward")
          x='z'
         else:
          GPIO.output(in1,GPIO.LOW)
          GPIO.output(in2,GPIO.HIGH)
-         print("backward")
+         logger.info("backward")
+         #print("backward")
          x='z'
 
     elif bytes(':','UTF-8') in x:
@@ -125,13 +144,15 @@ while(1):
                 directionPosition = direction * directionTicksPer
                 #Set servo To directionPosition
     elif x==bytes('s', 'UTF-8'):
-        print("stop")
+        logger.info("Stopping robot...")
+        #print("stop")
         GPIO.output(in1,GPIO.LOW)
         enabled = False
         x='z'
 
     elif x==bytes('en', 'UTF-8'):
-        print("Enable")
+        logger.info("Robot Enabled")
+        #print("Enable")
         enabled = True
         x='z'
 
