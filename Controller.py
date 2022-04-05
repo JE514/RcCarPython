@@ -23,14 +23,15 @@ pygame.init()
 
 j = pygame.joystick.Joystick(0)
 j.init()
+
 while True:
     try:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.JOYBUTTONDOWN:
-                sock.send("ho")
+                joyButtonDown()
             elif event.type == pygame.JOYBUTTONUP:
-               sock.send("ho")
+                joyButtonUp()
             if event.type == pygame.JOYAXISMOTION:
                 speed = round(j.get_axis(1), 1) * -100
                 direction = round(j.get_axis(3), 1)
@@ -45,13 +46,20 @@ while True:
                 print("M:" + str(-speed) + ":D:" + str(direction))
                 sock.send("M:" + str(-speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
-                    #If D: is positive Go Right, D: is negative go Left
+                 #If D: is positive Go Right, D: is negative go Left
         x=return_data()
         if x is not None:
             if bytes(':','UTF-8') in x:
                 xd = x.decode('UTF-8').split(":")[1]
                 print("Collision warning " + xd + " cm")
+                
+                
+def joyButtonDown():
+    sock.send("ho")
 
+def joyButtonUp():
+    sock.send("ho")
+               
     except KeyboardInterrupt:
         print("EXITING NOW")
         j.quit()
