@@ -1,6 +1,22 @@
 import pygame
 import bluetooth
 
+
+#0 = SQUARE
+#1 = X
+#2 = CIRCLE
+#3 = TRIANGLE
+#4 = L1
+#5 = R1
+#6 = L2
+#7 = R2
+#8 = SHARE
+#9 = OPTIONS
+#10 = LEFT ANALOG PRESS
+#11 = RIGHT ANALOG PRESS
+#12 = PS4 ON BUTTON
+#13 = TOUCHPAD PRESS
+
 def return_data():
     try:
         while True:
@@ -30,9 +46,11 @@ while True:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.JOYBUTTONDOWN:
-                joyButtonDown()
+                if j.get_button(0):
+                    squareDown()
             elif event.type == pygame.JOYBUTTONUP:
-                joyButtonUp()
+                if j.get_button(0):
+                    squareUp()
             if event.type == pygame.JOYAXISMOTION:
                 speed = round(j.get_axis(1) * -100)
                 direction = round(j.get_axis(3), 2)
@@ -58,9 +76,9 @@ def enableRobot():
     sock.send("en")
 def stopRobot():
     sock.send("s")
-def joyButtonDown():
+def squareDown():
     sock.send("ho")
-def joyButtonUp():
+def squareUp():
     sock.send("ho")
   
                
