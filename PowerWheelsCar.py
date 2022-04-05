@@ -2,7 +2,9 @@ import bluetooth
 import RPi.GPIO as GPIO
 from time import sleep
 import time
-from rccarsensor import ultrasonicRead
+from sensor import ultrasonicRead
+#from rccarsensor import ultrasonicRead
+
 
 enabled = True
 MAX_DISTANCE = 10000
