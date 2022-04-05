@@ -36,7 +36,7 @@ sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 sock.connect((bluetoothAddress, 1));
 sock.setblocking(False)
 pygame.init()
-
+enableRobot()
 j = pygame.joystick.Joystick(0)
 j.init()
 def enableRobot():
@@ -52,7 +52,6 @@ def squareUp():
     sock.send("ho")
         
 while True:
-    enableRobot()
     try:
         events = pygame.event.get()
         for event in events:
