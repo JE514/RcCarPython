@@ -70,9 +70,11 @@ while True:
                     direction = direction * 100
                 elif direction < -stickDeadband:
                     #LEFT
-                    direction = direction * -100
-                print("M:" + str(-speed) + ":D:" + str(direction))
-                sock.send("M:" + str(-speed) + ":D:" + str(direction))
+                    direction = direction * 100
+                else:
+                    direction = 0
+                print("M:" + str(speed) + ":D:" + str(direction))
+                sock.send("M:" + str(speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
                  #If D: is positive Go Right, D: is negative go Left
         x=return_data()
