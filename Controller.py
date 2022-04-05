@@ -39,7 +39,18 @@ pygame.init()
 
 j = pygame.joystick.Joystick(0)
 j.init()
-
+def enableRobot():
+    sock.send("en")
+    
+def stopRobot():
+    sock.send("s")
+    
+def squareDown():
+    sock.send("ho")
+    
+def squareUp():
+    sock.send("ho")
+        
 while True:
     enableRobot()
     try:
@@ -71,15 +82,7 @@ while True:
             if bytes(':','UTF-8') in x:
                 xd = x.decode('UTF-8').split(":")[1]
                 print("Collision warning " + xd + " cm")
-                
-    def enableRobot():
-        sock.send("en")
-    def stopRobot():
-        sock.send("s")
-    def squareDown():
-        sock.send("ho")
-    def squareUp():
-        sock.send("ho")
+              
   
                
     except KeyboardInterrupt:
