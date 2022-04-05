@@ -56,13 +56,16 @@ while True:
                 
 def enableRobot():
     sock.send("en")
+def stopRobot():
+    sock.send("s")
 def joyButtonDown():
     sock.send("ho")
-
 def joyButtonUp():
     sock.send("ho")
+  
                
     except KeyboardInterrupt:
+        stopRobot()
         print("EXITING NOW")
         j.quit()
         x.toString()
