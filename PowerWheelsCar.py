@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 import time
 from sensor import ultrasonicRead
-https://gist.github.com/theonlytruegod/1d61841f3294f419bbe8b800143deba1#from rccarsensor import ultrasonicRead
+#from rccarsensor import ultrasonicRead
 
 
 enabled = True
