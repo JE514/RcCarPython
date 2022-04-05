@@ -33,8 +33,8 @@ while True:
             elif event.type == pygame.JOYBUTTONUP:
                 joyButtonUp()
             if event.type == pygame.JOYAXISMOTION:
-                speed = round(j.get_axis(1), 1) * -100
-                direction = round(j.get_axis(3), 1)
+                speed = round(j.get_axis(1) * -100)
+                direction = round(j.get_axis(3), 2)
                 if direction > stickDeadband:
                     #RIGHT
                     direction = direction * 100
