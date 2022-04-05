@@ -5,8 +5,6 @@ import time
 from rccarsensor import ultrasonicRead
 
 enabled = True
-trigPin = 23
-echoPin = 24
 MAX_DISTANCE = 10000
 timeOut=MAX_DISTANCE*60
 in1 = 14
@@ -17,8 +15,6 @@ directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
 
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(trigPin, GPIO.OUT) # set trigPin to output mode
-GPIO.setup(echoPin, GPIO.IN)
 GPIO.setup(in1,GPIO.OUT)
 GPIO.setup(ena,GPIO.OUT)
 GPIO.output(in1,GPIO.LOW)
