@@ -32,8 +32,8 @@ while True:
             #elif event.type == pygame.JOYBUTTONUP:
                # sock.send("ho2")
             if event.type == pygame.JOYAXISMOTION:
-                speed = round(j.get_axis(1)) * -100
-                direction = round(j.get_axis(3))
+                speed = round(j.get_axis(1), 1) * -100
+                direction = round(j.get_axis(3), 1)
                 if direction > stickDeadband:
                     #RIGHT
                     direction = direction * 100
