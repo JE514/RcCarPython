@@ -4,9 +4,9 @@ import logging.config
 
 
 def Logger(file_name):
-        formatter = logging.Formatter(fmt='%(asctime)s %(module)s %(levelname)8s | %(message)s',
+        formatter = logging.Formatter(fmt='%(asctime)s %(module)s %(levelname)s | %(message)s',
                                       datefmt='%Y/%m/%d %H:%M:%S') # %I:%M:%S %p AM|PM format
-        logging.basicConfig(filename = '%s.log' %(file_name),format= '%(asctime)s %(module)s %(levelname)8s | %(message)s',
+        logging.basicConfig(filename = '%s.log' %(file_name),format= '%(asctime)s %(module)s %(levelname)s | %(message)s',
                                       datefmt='%Y/%m/%d %H:%M:%S', filemode = 'w', level = logging.INFO)
         log_obj = logging.getLogger()
         log_obj.setLevel(logging.DEBUG)
