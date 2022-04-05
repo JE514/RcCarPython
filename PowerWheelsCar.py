@@ -12,13 +12,16 @@ timeOut=MAX_DISTANCE*60
 in1 = 14
 ena = 18
 temp1=1
+buzzerPin=17
+directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
+
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(trigPin, GPIO.OUT) # set trigPin to output mode
 GPIO.setup(echoPin, GPIO.IN)
 GPIO.setup(in1,GPIO.OUT)
 GPIO.setup(ena,GPIO.OUT)
 GPIO.output(in1,GPIO.LOW)
-buzzerPin=17
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
 motor=GPIO.PWM(ena,1000)
@@ -27,6 +30,7 @@ motor.start(25)
 bd_addr = "DC:A6:32:6B:38:BD"
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
+
 server_socket = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 server_socket.bind((bd_addr, bluetooth.PORT_ANY))
 server_socket.listen(port)
@@ -107,6 +111,7 @@ while(1):
          x='z'
 
     elif bytes(':','UTF-8') in x:
+        #MAIN DRIVE CODE.
         speed = x.decode('UTF-8').split(':')[1].replace("'",'')
         direction = x.decode('UTF-8').split(':')[3].replace("'",'')
         if enabled == True:
@@ -123,20 +128,7 @@ while(1):
                 motor.ChangeDutyCycle(0)
             if direction != 0:
                 directionPosition = direction * directionTicksPer
-        
-        
-        
-        
-        if cmd=="f":
-            print("f")
-            if float(speed) == 0.0:
-                motor.ChangeDutyCycle(0)
-            else:
-                GPIO.output(in1,GPIO.HIGH)
-                motor.ChangeDutyCycle(float(speed))
-        elif cmd=="b":
-            GPIO.output(in1,GPIO.LOW)
-            motor.ChangeDutyCycle(float(speed))
+                #Set servo To directionPosition
     elif x==bytes('s', 'UTF-8'):
         print("stop")
         GPIO.output(in1,GPIO.LOW)
@@ -171,6 +163,10 @@ while(1):
     elif x==bytes('h', 'UTF-8'):
         print("high")
         motor.ChangeDutyCycle(100)
+        x='z'
+    elif x==bytes('en', 'UTF-8'):
+        print("Enable")
+        enabled = True
         x='z'
 
 
