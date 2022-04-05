@@ -1,9 +1,9 @@
 import time
 import RPi.GPIO as GPIO
 from time import sleep
-from PowerWheelsCar import logger
+from PowerWheelsCar import getLogger
 
-Logger = logger
+Logger = getLogger()
 trigPin = 23
 echoPin = 24
 MAX_DISTANCE = 10000
