@@ -1,6 +1,9 @@
 import time
 import RPi.GPIO as GPIO
 from time import sleep
+from PowerWheelsCar import logger
+
+Logger = logger
 trigPin = 23
 echoPin = 24
 MAX_DISTANCE = 10000
@@ -30,5 +33,5 @@ def getSonar(): #get the measurement results of ultrasonic module,with unit: cm
     return distance
     
 def ultrasonicRead():
-    print (getSonar())
+    Logger.info(getSonar())
     return getSonar()
