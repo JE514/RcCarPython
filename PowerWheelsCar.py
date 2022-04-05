@@ -129,7 +129,6 @@ while(1):
     elif x==bytes('s', 'UTF-8'):
         print("stop")
         GPIO.output(in1,GPIO.LOW)
-        GPIO.output(in2,GPIO.LOW)
         enabled = False
         x='z'
 
