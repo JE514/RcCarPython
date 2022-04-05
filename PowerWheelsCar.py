@@ -48,9 +48,9 @@ def enabledAlert(length, amount):
             buzz = buzz-1
         else:
             break
-
-def getLogger():
-    return logger
+            
+def log(message):
+    logger.info(message)
 
 
 #enabledAlert(0.1, 3)
