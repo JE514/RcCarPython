@@ -64,7 +64,7 @@ while True:
                     squareUp()
             if event.type == pygame.JOYAXISMOTION:
                 speed = round(j.get_axis(1) * -100)
-                direction = round(j.get_axis(6), 2) #axis 3
+                direction = round(j.get_axis(0), 2) #axis 3
                 if direction > stickDeadband:
                     #RIGHT
                     direction = direction * 100
