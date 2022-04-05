@@ -136,47 +136,21 @@ while(1):
         enabled = False
         x='z'
 
-    elif x==bytes('f', 'UTF-8'):
-        print("forward")
-        GPIO.output(in1,GPIO.HIGH)
-        GPIO.output(in2,GPIO.LOW)
-        temp1=1
-        x='z'
-
-    elif x==bytes('b', 'UTF-8'):
-        print("backward")
-        GPIO.output(in1,GPIO.LOW)
-        GPIO.output(in2,GPIO.HIGH)
-        temp1=0
-        x='z'
-
-    elif x==bytes('l', 'UTF-8'):
-        print("low")
-        motor.ChangeDutyCycle(25)
-        x='z'
-
-    elif x==bytes('m', 'UTF-8'):
-        print("medium")
-        motor.ChangeDutyCycle(50)
-        x='z'
-
-    elif x==bytes('h', 'UTF-8'):
-        print("high")
-        motor.ChangeDutyCycle(100)
-        x='z'
     elif x==bytes('en', 'UTF-8'):
         print("Enable")
         enabled = True
         x='z'
 
-
     elif x==bytes('e', 'UTF-8'):
         GPIO.cleanup()
         break
     elif x==bytes('ho','UTF-8'):
-        GPIO.output(buzzerPin,GPIO.HIGH)
-    elif x==bytes('ho2','UTF-8'):
-        GPIO.output(buzzerPin,GPIO.LOW)
+        if buzzer == False:
+            GPIO.output(buzzerPin,GPIO.HIGH)
+            buzzer = True
+        elif buzzer == True:
+            GPIO.output(buzzerPin,GPIO.LOW)
+            buzzer = False
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
