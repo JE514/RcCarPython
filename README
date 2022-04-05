@@ -1,4 +1,4 @@
 TODO:
-1. Add logger(logs events to file and prints to console)
+1. Add logger(logs events to file and prints to console and LOGS Reciever events in controller console)
 2. setup servo motor, get it running
 3. set directionTicksPer value
