@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 from time import sleep
 import time
 from rccarsensor import ultrasonicRead
+
+enabled = True
 trigPin = 23
 echoPin = 24
 MAX_DISTANCE = 10000
@@ -27,8 +29,8 @@ uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
 server_socket = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 server_socket.bind((bd_addr, bluetooth.PORT_ANY))
-server_socket.listen(1)
-print("Bluetooth device Is connsected!1")
+server_socket.listen(port)
+print("Bluetooth Bind: listening on port " + str(port))
 def enabledAlert(length, amount):
     buzz=amount
     while (buzz > 0):
@@ -47,12 +49,12 @@ def enabledAlert(length, amount):
 
 #enabledAlert(0.1, 3)
 bluetooth.advertise_service(server_socket, "SampleServer", service_classes=[bluetooth.SERIAL_PORT_CLASS],profiles=[bluetooth.SERIAL_PORT_PROFILE])
-print("Bluetooth device Is connected!2")
+print("Bluetooth: Advertising service!")
 
 client_socket, address = server_socket.accept()
-print("Bluetooth device Is connected!3")
+print("Bluetooth: Accepting client!")
 #server_socket.send('\x1a')
-print("Bluetooth device Is connected!4")
+print("Bluetooth device Is connected!")
 #enabledAlert(0.2, 2)
 
 
@@ -105,13 +107,27 @@ while(1):
          x='z'
 
     elif bytes(':','UTF-8') in x:
-        print("xd")
-        cmd = x.decode('UTF-8').split(':')[1].replace("'",'')
-        speed = x.decode('UTF-8').split(':')[0].replace("'",'')
-        sspeed = x.decode('UTF-8').split(':')[3].replace("'",'')
+        speed = x.decode('UTF-8').split(':')[1].replace("'",'')
+        direction = x.decode('UTF-8').split(':')[3].replace("'",'')
+        if enabled == True:
+            #GPIO.output(in1,GPIO.HIGH) #high = forward?
+            speed = float(speed)
+            if speed > 0:
+                GPIO.output(in1,GPIO.HIGH) #High = forwards ??????
+                motor.ChangeDutyCycle(speed)
+            elif speed < 0:
+                GPIO.output(in1,GPIO.LOW) #Low = backwards ??????
+                motor.ChangeDutyCycle(-speed)
+            else:
+                GPIO.output(in1,GPIO.LOW)
+                motor.ChangeDutyCycle(0)
+            if direction != 0:
+                directionPosition = direction * directionTicksPer
+        
+        
+        
+        
         if cmd=="f":
-            #r.ChangeDutyCycle(float(speed))
-            #l.ChangeDutyCycle(float(speed))
             print("f")
             if float(speed) == 0.0:
                 motor.ChangeDutyCycle(0)
@@ -125,6 +141,7 @@ while(1):
         print("stop")
         GPIO.output(in1,GPIO.LOW)
         GPIO.output(in2,GPIO.LOW)
+        enabled = False
         x='z'
 
     elif x==bytes('f', 'UTF-8'):
@@ -143,17 +160,17 @@ while(1):
 
     elif x==bytes('l', 'UTF-8'):
         print("low")
-        r.ChangeDutyCycle(25)
+        motor.ChangeDutyCycle(25)
         x='z'
 
     elif x==bytes('m', 'UTF-8'):
         print("medium")
-        r.ChangeDutyCycle(50)
+        motor.ChangeDutyCycle(50)
         x='z'
 
     elif x==bytes('h', 'UTF-8'):
         print("high")
-        l.ChangeDutyCycle(100)
+        motor.ChangeDutyCycle(100)
         x='z'
 
 
