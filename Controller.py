@@ -11,10 +11,13 @@ def return_data():
             return data
     except OSError:
         pass
+bluetoothAddress = "DC:A6:32:6B:38:BD"
+minStickOutput = 0.2
+
 
 sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
-sock.connect(("DC:A6:32:6B:38:BD", 1));
+sock.connect((bluetoothAddress, 1));
 sock.setblocking(False)
 pygame.init()
 
@@ -29,26 +32,20 @@ while True:
             #elif event.type == pygame.JOYBUTTONUP:
                # sock.send("ho2")
             if event.type == pygame.JOYAXISMOTION:
-                Moutput = j.get_axis(1) * -100
-                direction = j.get_axis(3)
-                if direction > 0.2:
-                    direction2 = "R"
-                elif direction < -0.2:
-                    direction2 = "L"
+                Moutput = round(j.get_axis(1)) * -100
+                direction = round(j.get_axis(3))
+                if direction > minStickOutput:
+                    #RIGHT
+                    direction = direction * 100
+                elif direction < -minStickOutput:
+                    #LEFT
+                    direction = direction * -100
                 else:
-                    direction2 = "N"
-                if Moutput < 0:
-                    if direction > 0:
-                        direction = direction * 100
-                    else:
-                        direction = direction * -100
-                    sock.send(str(round(- Moutput)) + ":b:" + direction2 + ":" + str(direction))
-                else:
-                    if direction > 0:
-                        direction = direction * 100
-                    else:
-                        direction = direction * -100
-                    sock.send(str(round(Moutput)) + ":f:" + direction2 + ":" + str(direction))
+                    return
+                print("M:" + str(-Moutput) + "D:" + str(direction))
+                sock.send("M:" + str(-Moutput) + "D:" + str(direction))
+                 #if M: is Positive, go forward, If M is negative, go backwards
+                    #If D: is positive Go Right, D: is negative go Left
         x=return_data()
         if x is not None:
             if bytes(':','UTF-8') in x:
