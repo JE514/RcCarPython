@@ -25,6 +25,7 @@ j = pygame.joystick.Joystick(0)
 j.init()
 
 while True:
+    enableRobot()
     try:
         events = pygame.event.get()
         for event in events:
@@ -53,7 +54,8 @@ while True:
                 xd = x.decode('UTF-8').split(":")[1]
                 print("Collision warning " + xd + " cm")
                 
-                
+def enableRobot():
+    sock.send("en")
 def joyButtonDown():
     sock.send("ho")
 
