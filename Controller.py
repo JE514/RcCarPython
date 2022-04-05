@@ -12,7 +12,7 @@ def return_data():
     except OSError:
         pass
 bluetoothAddress = "DC:A6:32:6B:38:BD"
-minStickOutput = 0.2
+stickDeadband = 0.2
 
 
 sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
@@ -34,10 +34,10 @@ while True:
             if event.type == pygame.JOYAXISMOTION:
                 Moutput = round(j.get_axis(1)) * -100
                 direction = round(j.get_axis(3))
-                if direction > minStickOutput:
+                if direction > stickDeadband:
                     #RIGHT
                     direction = direction * 100
-                elif direction < -minStickOutput:
+                elif direction < -stickDeadband:
                     #LEFT
                     direction = direction * -100
                 else:
