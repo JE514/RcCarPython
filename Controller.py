@@ -72,14 +72,14 @@ while True:
                 xd = x.decode('UTF-8').split(":")[1]
                 print("Collision warning " + xd + " cm")
                 
-def enableRobot():
-    sock.send("en")
-def stopRobot():
-    sock.send("s")
-def squareDown():
-    sock.send("ho")
-def squareUp():
-    sock.send("ho")
+    def enableRobot():
+        sock.send("en")
+    def stopRobot():
+        sock.send("s")
+    def squareDown():
+        sock.send("ho")
+    def squareUp():
+        sock.send("ho")
   
                
     except KeyboardInterrupt:
