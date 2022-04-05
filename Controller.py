@@ -32,7 +32,7 @@ while True:
             #elif event.type == pygame.JOYBUTTONUP:
                # sock.send("ho2")
             if event.type == pygame.JOYAXISMOTION:
-                Moutput = round(j.get_axis(1)) * -100
+                speed = round(j.get_axis(1)) * -100
                 direction = round(j.get_axis(3))
                 if direction > stickDeadband:
                     #RIGHT
@@ -42,8 +42,8 @@ while True:
                     direction = direction * -100
                 else:
                     return
-                print("M:" + str(-Moutput) + "D:" + str(direction))
-                sock.send("M:" + str(-Moutput) + "D:" + str(direction))
+                print("M:" + str(-speed) + ":D:" + str(direction))
+                sock.send("M:" + str(-speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
                     #If D: is positive Go Right, D: is negative go Left
         x=return_data()
