@@ -24,8 +24,6 @@ def Logger(file_name):
         screen_handler.setFormatter(formatter)
         logging.getLogger().addHandler(screen_handler)
         
-        fh = logging.FileHandler('robotLog.log')
-        logging.getLogger().addHandler(fh)
 
         log_obj.info("Logger object created successfully..")
         return log_obj
