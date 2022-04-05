@@ -1,0 +1,3 @@
+1. Add logger(logs events to file and prints to console)
+2. setup servo motor, get it running
+3. set directionTicksPer value
