@@ -7,8 +7,6 @@ from sensor import ultrasonicRead
 
 
 enabled = True
-MAX_DISTANCE = 10000
-timeOut=MAX_DISTANCE*60
 in1 = 14
 ena = 18
 temp1=1
