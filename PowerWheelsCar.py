@@ -49,6 +49,8 @@ def enabledAlert(length, amount):
         else:
             break
 
+def getLogger():
+    return logger
 
 
 #enabledAlert(0.1, 3)
