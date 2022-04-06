@@ -158,7 +158,7 @@ while(1):
             elif speed < 0: #0
                 GPIO.output(in1,GPIO.LOW) #Low = backwards ??????
                 #motor.ChangeDutyCycle(-speed)
-                pi.set_servo_pulsewidth(ESC, 1500 - speed * 5)
+                pi.set_servo_pulsewidth(ESC, 1500 + speed * 5)
             else:
                 GPIO.output(in1,GPIO.LOW)
                 #motor.ChangeDutyCycle(0)
