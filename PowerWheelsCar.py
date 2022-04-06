@@ -87,7 +87,7 @@ def return_data():
             data = client_socket.recv(1024)
             if not data:
                 break
-            print(data) #PRINT LINEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            print(data.replace("'",'')) #PRINT LINEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
             return data
     except OSError:
         pass
@@ -134,8 +134,8 @@ while(1):
 
     elif bytes(':','UTF-8') in x:
         #MAIN DRIVE CODE.
-        speed = x.decode('UTF-8').split(':')[1].replace("'",'')
-        direction = x.decode('UTF-8').split(':')[3].replace("'",'')
+        speed = x.decode('UTF-8').split(':')[2].replace("'",'')
+        direction = x.decode('UTF-8').split(':')[4].replace("'",'')
         if enabled == True:
             try:
                 speed = float(speed)
