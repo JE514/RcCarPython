@@ -24,9 +24,9 @@ logger = Logger("robotLog")
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
-GPIO.setup(servoPin, GPIO.OUT)
-steerServo = GPIO.PWM(servoPin, 50) # GPIO 17 for PWM with 50Hz
-steerServo.start(2.5)
+#GPIO.setup(servoPin, GPIO.OUT)
+#steerServo = GPIO.PWM(servoPin, 50) # GPIO 17 for PWM with 50Hz
+#steerServo.start(2.5)
 bd_addr = "DC:A6:32:6B:38:BD" #"B8:27:EB:D6:57:CE" 
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
@@ -115,6 +115,7 @@ while(1):
     x=return_data()
     if x == None:
         logger.info("Bluetooth: disconnected!")
+        pi.set_servo_pulsewidth(ESC, 0)
         disconnected = True
         client_socket, address = server_socket.accept()
         if disconnected == True:
