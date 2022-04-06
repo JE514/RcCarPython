@@ -63,12 +63,7 @@ def loop():
             logger.info("PRE: M:" + str(speed) + ":D:" + str(direction))
             sock.send(":M:" + str(speed) + ":D:" + str(direction))
     except:
-        print("EXCEPTION IN LOOP FUNCTION")
-        print("EXCEPTION IN LOOP FUNCTION")
-        print("EXCEPTION IN LOOP FUNCTION")
-        print("EXCEPTION IN LOOP FUNCTION")
-        print("EXCEPTION IN LOOP FUNCTION")
-        print("EXCEPTION IN LOOP FUNCTION")
+        logger.warn("EXCEPTION IN LOOP FUNCTION INFO: speed: " + str(speed) + " direction: " + str(direction))
     
     
 while True:
