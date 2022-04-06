@@ -64,7 +64,7 @@ def loop():
             logger.info("PRE: M:" + str(speed) + ":D:" + str(direction))
             sock.send(":M:" + str(speed) + ":D:" + str(direction))
     except:
-        logger.warn("EXCEPTION: LOOP FUNCTION INFO: sysinfo: " + str(sys.exc_info()[1]) + " speed: " + str(speed) + " direction: " + str(direction))
+        logger.warn("EXCEPTION: LOOP FUNCTION INFO: sysinfo: " + str(sys.exc_info()[0]) + " speed: " + str(speed) + " direction: " + str(direction))
     
     
 while True:
