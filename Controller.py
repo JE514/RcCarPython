@@ -1,7 +1,7 @@
 import pygame
 import bluetooth
 from Logger import Logger
-import Sys
+import sys
 
 #0 = SQUARE
 #1 = X
