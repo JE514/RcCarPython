@@ -11,6 +11,7 @@ motorNeutralSpeed = 1500
 motorMinSpeed = 1000
 motorMaxSpeed = 2000
 enabled = False
+ultrasonicSensorEnabled = False
 servoPin = 18
 ESC = 4
 temp1=1
@@ -101,7 +102,7 @@ logger.info("\n")
 
 from threading import Thread
 def sendCollisionWarning():
-    while True:
+    while ultrasonicSensorEnabled == True:
         distance = ultrasonicRead()
         if distance < 10:
             logger.info("Collision warning")
