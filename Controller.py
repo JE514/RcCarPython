@@ -51,9 +51,35 @@ def squareUp():
     sock.send("ho")
  
 enableRobot()
-        
+
+def loop():
+    try:
+        speed = round(j.get_axis(1) * -100)
+        direction = round(j.get_axis(3) * 100) #axis 0
+        if direction < stickDeadband and direction > -stickDeadband:
+            direction = 0
+        print("PRE: M:" + str(speed) + ":D:" + str(direction))
+        sock.send("M:" + str(speed) + ":D:" + str(direction))
+        if j.get_button(0):
+            print("SQUARE PRESSED OR RELEASED")
+            print("SQUARE PRESSED OR RELEASED")
+            print("SQUARE PRESSED OR RELEASED")
+            print("SQUARE PRESSED OR RELEASED")
+            print("SQUARE PRESSED OR RELEASED")
+            print("SQUARE PRESSED OR RELEASED")
+            print("SQUARE PRESSED OR RELEASED")
+    except:
+        print("EXCEPTION IN LOOP FUNCTION")
+        print("EXCEPTION IN LOOP FUNCTION")
+        print("EXCEPTION IN LOOP FUNCTION")
+        print("EXCEPTION IN LOOP FUNCTION")
+        print("EXCEPTION IN LOOP FUNCTION")
+        print("EXCEPTION IN LOOP FUNCTION")
+    
+    
 while True:
     try:
+        loop()
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.JOYBUTTONDOWN:
@@ -63,12 +89,13 @@ while True:
                 if j.get_button(0):
                     squareUp()
             if event.type == pygame.JOYAXISMOTION:
-                speed = round(j.get_axis(1) * -100)
-                direction = round(j.get_axis(3) * 100) #axis 0
-                if direction < stickDeadband and direction > -stickDeadband:
-                    direction = 0
-                print("M:" + str(speed) + ":D:" + str(direction))
-                sock.send("M:" + str(speed) + ":D:" + str(direction))
+                print("EVENT JOYAXISMOTION")
+                #speed = round(j.get_axis(1) * -100)
+                #direction = round(j.get_axis(3) * 100) #axis 0
+                #if direction < stickDeadband and direction > -stickDeadband:
+                    #direction = 0
+                #print("M:" + str(speed) + ":D:" + str(direction))
+                #sock.send("M:" + str(speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
                  #If D: is positive Go Right, D: is negative go Left
         x=return_data()
