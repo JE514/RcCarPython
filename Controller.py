@@ -58,8 +58,9 @@ def loop():
         direction = round(j.get_axis(3) * 100) #axis 0
         if direction < stickDeadband and direction > -stickDeadband:
             direction = 0
-        print("PRE: M:" + str(speed) + ":D:" + str(direction))
-        sock.send("M:" + str(speed) + ":D:" + str(direction))
+        if speed > -101 and direction > -101:
+            print("PRE: M:" + str(speed) + ":D:" + str(direction))
+            sock.send("M:" + str(speed) + ":D:" + str(direction))
         if j.get_button(0):
             print("SQUARE PRESSED OR RELEASED")
             print("SQUARE PRESSED OR RELEASED")
@@ -94,8 +95,9 @@ while True:
                 #direction = round(j.get_axis(3) * 100) #axis 0
                 #if direction < stickDeadband and direction > -stickDeadband:
                     #direction = 0
-                #print("M:" + str(speed) + ":D:" + str(direction))
-                #sock.send("M:" + str(speed) + ":D:" + str(direction))
+                #if speed > -101 and direction > -101:
+                    #print("M:" + str(speed) + ":D:" + str(direction))
+                    #sock.send("M:" + str(speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
                  #If D: is positive Go Right, D: is negative go Left
         x=return_data()
