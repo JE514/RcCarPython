@@ -51,8 +51,6 @@ def enabledAlert(length, amount):
         else:
             break
             
-def log(message):
-    logger.info(message)
     
 def arm(): #This is the arming procedure of an ESC 
     logger.info("ESC: ARMING ESC")
@@ -72,10 +70,13 @@ client_socket, address = server_socket.accept()
 logger.info("Bluetooth: Accepting client!")
 #server_socket.send('\x1a')
 logger.info("Bluetooth: Device connected!")
-#enabledAlert(0.2, 2)
+#enabledAlert(0.2, 2) #2 bluetooth connected 
 
+
+    
 def enableRobot():
     #arm() #TRYING WITHOUT ARMING SEQUENCE
+    #enabledAlert(0.5, 3) #3 long enable robot
     enabled = True
     logger.info("Robot: Robot Enabled")
     
@@ -89,11 +90,15 @@ def return_data():
             return data
     except OSError:
         pass
-
+    
 logger.info("\n")
 logger.info("Robot Program Started...")
 logger.info("\n")
-enableRobot()
+#enableRobot()
+#dat=return_data()
+#if dat==bytes('en', 'UTF-8'):
+    #enableRobot()
+
 from threading import Thread
 def sendCollisionWarning():
     while True:
@@ -106,7 +111,6 @@ thread=Thread(target=sendCollisionWarning)
 thread.start()
 
 while(1):
-    x=return_data()
     if x == None:
         logger.info("Bluetooth: disconnected!")
         disconnected = True
@@ -115,16 +119,16 @@ while(1):
             logger.info("Bluetooth: Reconnected!")
 
     elif x==bytes('r', 'UTF-8'):
-        logger.info("run")
-        if(temp1==1):
-         pi.set_servo_pulsewidth(ESC, 2000
-                                )
-         logger.info("forward")
-         x='z'
-        else:
-         pi.set_servo_pulsewidth(ESC, 1000)
-         logger.info("backward")
-         x='z'
+        if enabled == True:
+            logger.info("run")
+            if(temp1==1):
+                pi.set_servo_pulsewidth(ESC, 2000)
+                logger.info("forward")
+                x='z'
+            else:
+                pi.set_servo_pulsewidth(ESC, 1000)
+                logger.info("backward")
+                x='z'
 
     elif bytes(':','UTF-8') in x:
         #MAIN DRIVE CODE.
@@ -156,6 +160,7 @@ while(1):
     elif x==bytes('en', 'UTF-8'):
         logger.info("Robot Enabled")
         enabled = True
+        enableRobot()
         x='z'
 
     elif x==bytes('e', 'UTF-8'):
