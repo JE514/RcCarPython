@@ -1,6 +1,7 @@
 import pygame
 import bluetooth
 from Logger import Logger
+import system
 
 #0 = SQUARE
 #1 = X
@@ -58,12 +59,12 @@ def loop():
         speed = float(round(j.get_axis(1) * -100))
         direction = float(round(j.get_axis(3) * 100)) #axis 0
         if direction < stickDeadband and direction > -stickDeadband:
-            direction = 0
+            direction = 0.0
         if speed > -101 and direction > -101:
             logger.info("PRE: M:" + str(speed) + ":D:" + str(direction))
             sock.send(":M:" + str(speed) + ":D:" + str(direction))
     except:
-        logger.warn("EXCEPTION IN LOOP FUNCTION INFO: speed: " + str(speed) + " direction: " + str(direction))
+        logger.warn("EXCEPTION: LOOP FUNCTION INFO: sysinfo: " + sys.exc_info()[2] + " speed: " + str(speed) + " direction: " + str(direction))
     
     
 while True:
