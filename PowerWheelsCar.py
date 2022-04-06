@@ -25,7 +25,7 @@ GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
 GPIO.setup(servoPin, GPIO.OUT)
 motor=GPIO.PWM(ena,1000)
-steerServo = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
+steerServo = GPIO.PWM(servoPin, 50) # GPIO 17 for PWM with 50Hz
 steerServo.start(2.5)
 motor.start(25)
 bd_addr = "B8:27:EB:D6:57:CE" #DC:A6:32:6B:38:BD
