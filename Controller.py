@@ -56,7 +56,7 @@ def squareUp():
 enableRobot()
 
 def loop():
-    sleep(0.02)
+    sleep(0.02) #sleep 20 ms
     try:
         speed = float(round(j.get_axis(1) * -100))
         direction = float(round(j.get_axis(3) * 100)) #axis 0
@@ -80,8 +80,8 @@ while True:
             elif event.type == pygame.JOYBUTTONUP:
                 if j.get_button(0):
                     squareUp()
-            if event.type == pygame.JOYAXISMOTION:
-                logger.info("EVENT JOYAXISMOTION")
+            #if event.type == pygame.JOYAXISMOTION:
+                #logger.info("EVENT JOYAXISMOTION")
                 #speed = round(j.get_axis(1) * -100)
                 #direction = round(j.get_axis(3) * 100) #axis 0
                 #if direction < stickDeadband and direction > -stickDeadband:
