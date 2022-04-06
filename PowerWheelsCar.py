@@ -10,6 +10,7 @@ from Logger import Logger
 enabled = True
 in1 = 14
 ena = 18
+servoPin = 17
 temp1=1
 buzzerPin=17
 directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
@@ -22,8 +23,10 @@ GPIO.setup(ena,GPIO.OUT)
 GPIO.output(in1,GPIO.LOW)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
+GPIO.setup(servoPin, GPIO.OUT)
 motor=GPIO.PWM(ena,1000)
-
+steerServo = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
+steerServo.start(2.5)
 motor.start(25)
 bd_addr = "DC:A6:32:6B:38:BD"
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
@@ -115,13 +118,11 @@ while(1):
         #print("run")
         if(temp1==1):
          GPIO.output(in1,GPIO.HIGH)
-         GPIO.output(in2,GPIO.LOW)
          logger.info("forward")
          #print("forward")
          x='z'
         else:
          GPIO.output(in1,GPIO.LOW)
-         GPIO.output(in2,GPIO.HIGH)
          logger.info("backward")
          #print("backward")
          x='z'
