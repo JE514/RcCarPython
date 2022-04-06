@@ -10,7 +10,7 @@ from Logger import Logger
 enabled = True
 in1 = 14
 ena = 18
-servoPin = 17
+servoPin = 5
 temp1=1
 buzzerPin=17
 directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
@@ -31,6 +31,7 @@ motor.start(25)
 bd_addr = "B8:27:EB:D6:57:CE" #DC:A6:32:6B:38:BD
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
+buzzer = False
 
 server_socket = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 server_socket.bind((bd_addr, bluetooth.PORT_ANY))
