@@ -112,6 +112,7 @@ thread=Thread(target=sendCollisionWarning)
 thread.start()
 
 while(1):
+    x=return_data()
     if x == None:
         logger.info("Bluetooth: disconnected!")
         disconnected = True
