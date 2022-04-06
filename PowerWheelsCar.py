@@ -87,7 +87,7 @@ def return_data():
             data = client_socket.recv(1024)
             if not data:
                 break
-            print(data.replace("'",'')) #PRINT LINEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            print(data) #PRINT LINEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
             return data
     except OSError:
         pass
