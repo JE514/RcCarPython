@@ -1,6 +1,6 @@
 import pygame
 import bluetooth
-
+from Logger import Logger
 
 #0 = SQUARE
 #1 = X
@@ -30,7 +30,7 @@ def return_data():
 bluetoothAddress = "DC:A6:32:6B:38:BD" #"B8:27:EB:D6:57:CE" 
 stickDeadband = 5
 
-
+logger = Logger("clientLog")
 sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
 sock.connect((bluetoothAddress, 1));
@@ -40,6 +40,7 @@ j = pygame.joystick.Joystick(0)
 j.init()
 def enableRobot():
     sock.send("en")
+    logger.info("Robot: Sending Enable Request!")
     
 def stopRobot():
     sock.send("s")
@@ -59,7 +60,7 @@ def loop():
         if direction < stickDeadband and direction > -stickDeadband:
             direction = 0
         if speed > -101 and direction > -101:
-            print("PRE: M:" + str(speed) + ":D:" + str(direction))
+            logger.info("PRE: M:" + str(speed) + ":D:" + str(direction))
             sock.send(":M:" + str(speed) + ":D:" + str(direction))
     except:
         print("EXCEPTION IN LOOP FUNCTION")
@@ -82,13 +83,13 @@ while True:
                 if j.get_button(0):
                     squareUp()
             if event.type == pygame.JOYAXISMOTION:
-                print("EVENT JOYAXISMOTION")
+                logger.info("EVENT JOYAXISMOTION")
                 #speed = round(j.get_axis(1) * -100)
                 #direction = round(j.get_axis(3) * 100) #axis 0
                 #if direction < stickDeadband and direction > -stickDeadband:
                     #direction = 0
                 #if speed > -101 and direction > -101:
-                    #print("M:" + str(speed) + ":D:" + str(direction))
+                    #logger.info("M:" + str(speed) + ":D:" + str(direction))
                     #sock.send(":M:" + str(speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
                  #If D: is positive Go Right, D: is negative go Left
