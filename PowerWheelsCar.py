@@ -76,7 +76,7 @@ logger.info("Bluetooth: Device connected!")
 
     
 def enableRobot():
-    #arm() #TRYING WITHOUT ARMING SEQUENCE
+    arm() #TRYING WITHOUT ARMING SEQUENCE
     #enabledAlert(0.5, 3) #3 long enable robot
     enabled = True
     logger.info("Robot: Robot Enabled")
