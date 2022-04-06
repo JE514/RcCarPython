@@ -137,10 +137,10 @@ while(1):
             speed = float(speed)
             if speed > 0:
                 GPIO.output(in1,GPIO.HIGH) #High = forwards ??????
-                motor.ChangeDutyCycle(speed)
+                motor.ChangeDutyCycle(speed * 5 + 1500)
             elif speed < 0:
-                GPIO.output(in1,GPIO.LOW) #Low = backwards ??????
-                motor.ChangeDutyCycle(-speed)
+                GPIO.output(in1,GPIO.HIGH) #Low = backwards ??????
+                motor.ChangeDutyCycle(1500 - speed * 5)
             else:
                 GPIO.output(in1,GPIO.LOW)
                 motor.ChangeDutyCycle(0)
