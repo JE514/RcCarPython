@@ -56,7 +56,7 @@ def squareUp():
 enableRobot()
 
 def loop():
-    time.sleep(0.02)
+    sleep(0.02)
     try:
         speed = float(round(j.get_axis(1) * -100))
         direction = float(round(j.get_axis(3) * 100)) #axis 0
