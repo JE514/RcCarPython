@@ -60,7 +60,7 @@ def loop():
             direction = 0
         if speed > -101 and direction > -101:
             print("PRE: M:" + str(speed) + ":D:" + str(direction))
-            sock.send("M:" + str(speed) + ":D:" + str(direction))
+            sock.send(":M:" + str(speed) + ":D:" + str(direction))
     except:
         print("EXCEPTION IN LOOP FUNCTION")
         print("EXCEPTION IN LOOP FUNCTION")
@@ -89,7 +89,7 @@ while True:
                     #direction = 0
                 #if speed > -101 and direction > -101:
                     #print("M:" + str(speed) + ":D:" + str(direction))
-                    #sock.send("M:" + str(speed) + ":D:" + str(direction))
+                    #sock.send(":M:" + str(speed) + ":D:" + str(direction))
                  #if M: is Positive, go forward, If M is negative, go backwards
                  #If D: is positive Go Right, D: is negative go Left
         x=return_data()
