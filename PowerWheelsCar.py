@@ -28,7 +28,7 @@ motor=GPIO.PWM(ena,1000)
 steerServo = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
 steerServo.start(2.5)
 motor.start(25)
-bd_addr = "DC:A6:32:6B:38:BD"
+bd_addr = "B8:27:EB:D6:57:CE" #DC:A6:32:6B:38:BD
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
 
