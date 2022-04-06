@@ -27,7 +27,7 @@ GPIO.output(in1,GPIO.LOW)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
 GPIO.setup(servoPin, GPIO.OUT)
-motor=GPIO.PWM(ena,1000)
+motor=GPIO.PWM(ena,50)
 steerServo = GPIO.PWM(servoPin, 50) # GPIO 17 for PWM with 50Hz
 steerServo.start(2.5)
 motor.start(25)
@@ -71,7 +71,7 @@ def arm(): #This is the arming procedure of an ESC
         time.sleep(1)
         pi.set_servo_pulsewidth(ESC, 2000)
         time.sleep(1)
-        pi.set_servo_pulsewidth(ESC, 700)
+        pi.set_servo_pulsewidth(ESC, 1500)
 
 #enabledAlert(0.1, 3)
 bluetooth.advertise_service(server_socket, "SampleServer", service_classes=[bluetooth.SERIAL_PORT_CLASS],profiles=[bluetooth.SERIAL_PORT_PROFILE])
@@ -151,14 +151,14 @@ while(1):
         if enabled == True:
             #GPIO.output(in1,GPIO.HIGH) #high = forward?
             speed = float(speed)
-            if speed > 24:#0
+            if speed > 0:#0
                 GPIO.output(in1,GPIO.HIGH) #High = forwards ??????
                 #motor.ChangeDutyCycle(speed)
-                pi.set_servo_pulsewidth(ESC, speed*20)
-            elif speed < 24: #0
+                pi.set_servo_pulsewidth(ESC, speed*5+1500)
+            elif speed < 0: #0
                 GPIO.output(in1,GPIO.LOW) #Low = backwards ??????
                 #motor.ChangeDutyCycle(-speed)
-                #pi.set_servo_pulsewidth(ESC, -speed*20)
+                pi.set_servo_pulsewidth(ESC, 1500 - speed * 5)
             else:
                 GPIO.output(in1,GPIO.LOW)
                 #motor.ChangeDutyCycle(0)
