@@ -150,7 +150,7 @@ while(1):
                 pi.set_servo_pulsewidth(ESC, motorNeutralSpeed + speed * 5)
             if direction != 0:
                 directionPosition = direction * directionTicksPer
-                steerServo.changeDutyCycle(directionPosition)
+                steerServo.set_servo_pulsewidth(servoPin, directionPosition)
                 #Set servo To directionPosition
                 
     elif x==bytes('s', 'UTF-8'):
