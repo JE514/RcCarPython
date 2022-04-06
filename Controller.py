@@ -54,8 +54,8 @@ enableRobot()
 
 def loop():
     try:
-        speed = round(j.get_axis(1) * -100)
-        direction = round(j.get_axis(3) * 100) #axis 0
+        speed = float(round(j.get_axis(1) * -100))
+        direction = float(round(j.get_axis(3) * 100)) #axis 0
         if direction < stickDeadband and direction > -stickDeadband:
             direction = 0
         if speed > -101 and direction > -101:
