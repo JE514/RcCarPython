@@ -61,14 +61,6 @@ def loop():
         if speed > -101 and direction > -101:
             print("PRE: M:" + str(speed) + ":D:" + str(direction))
             sock.send("M:" + str(speed) + ":D:" + str(direction))
-        if j.get_button(0):
-            print("SQUARE PRESSED OR RELEASED")
-            print("SQUARE PRESSED OR RELEASED")
-            print("SQUARE PRESSED OR RELEASED")
-            print("SQUARE PRESSED OR RELEASED")
-            print("SQUARE PRESSED OR RELEASED")
-            print("SQUARE PRESSED OR RELEASED")
-            print("SQUARE PRESSED OR RELEASED")
     except:
         print("EXCEPTION IN LOOP FUNCTION")
         print("EXCEPTION IN LOOP FUNCTION")
