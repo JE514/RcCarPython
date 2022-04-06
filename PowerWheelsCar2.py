@@ -11,8 +11,8 @@ motorNeutralSpeed = 1500
 motorMinSpeed = 1000
 motorMaxSpeed = 2000
 enabled = False
-in1 = 14
 servoPin = 18
+ESC = 4
 temp1=1
 buzzerPin=17
 directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
@@ -21,8 +21,6 @@ time.sleep(1)
 logger = Logger("robotLog")
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(in1,GPIO.OUT)
-GPIO.output(in1,GPIO.LOW)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
 GPIO.setup(servoPin, GPIO.OUT)
@@ -32,7 +30,6 @@ bd_addr = "B8:27:EB:D6:57:CE" #DC:A6:32:6B:38:BD
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
 
-ESC = 4
 pi = pigpio.pi();
 pi.set_servo_pulsewidth(ESC, 0)
 
@@ -120,11 +117,12 @@ while(1):
     elif x==bytes('r', 'UTF-8'):
         logger.info("run")
         if(temp1==1):
-         GPIO.output(in1,GPIO.HIGH)
+         pi.set_servo_pulsewidth(ESC, 2000
+                                )
          logger.info("forward")
          x='z'
         else:
-         GPIO.output(in1,GPIO.LOW)
+         pi.set_servo_pulsewidth(ESC, 1000)
          logger.info("backward")
          x='z'
 
