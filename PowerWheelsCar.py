@@ -26,7 +26,7 @@ logger = Logger("robotLog")
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.output(buzzerPin, GPIO.LOW)
-bd_addr = "B8:27:EB:D6:57:CE"  #"DC:A6:32:6B:38:BD" #"B8:27:EB:D6:57:CE" 
+bd_addr = "DC:A6:32:6B:38:BD"  #"B8:27:EB:D6:57:CE" 
 uuid = "42b58f76-b26d-11ea-b733-cb205305bc99"
 port = 1
 
