@@ -7,6 +7,7 @@ from sensor import ultrasonicRead
 from Logger import Logger
 import pigpio 
 
+autonMode = 1
 motorNeutralSpeed = 1500
 motorMinSpeed = 1000
 motorMaxSpeed = 2000
@@ -89,7 +90,7 @@ def getAutonEnabled():
     return autonEnabled
 
 def getConstants():
-    return [motorNeutralSpeed,directionTicksPer,enabled,motorMinSpeed,motorMaxSpeed]
+    return [motorNeutralSpeed,directionTicksPer,enabled,motorMinSpeed,motorMaxSpeed,autonMode]
 
 
     
