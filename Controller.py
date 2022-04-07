@@ -29,7 +29,7 @@ def return_data():
             return data
     except OSError:
         pass
-bluetoothAddress = "B8:27:EB:D6:57:CE"  #"DC:A6:32:6B:38:BD" 
+bluetoothAddress = "DC:A6:32:6B:38:BD"  #"B8:27:EB:D6:57:CE"  
 stickDeadband = 2
 
 logger = Logger("clientLog")
