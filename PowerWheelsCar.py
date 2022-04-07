@@ -149,12 +149,13 @@ while(1):
                 pi.set_servo_pulsewidth(ESC, speed*5+motorNeutralSpeed)
             elif speed < 0: #0
                 pi.set_servo_pulsewidth(ESC, motorNeutralSpeed + speed * 5)
-            if direction != 0:
-                if direction < 0:
-                    directionPosition = -direction * directionTicksPer * 18.9 + 533 # TEMP
-                else:
-                    directionPosition = direction * directionTicksPer * 18.9 + 533 #TEMP
-                pi.set_servo_pulsewidth(servoPin, directionPosition)
+            else:
+                pi.set_servo_pulsewidth(ESC, 0)
+            if direction < 0:
+                directionPosition = -direction * directionTicksPer * 18.9 + 1489 # TEMP  
+            else:
+                directionPosition = 1489 - direction * directionTicksPer * 18.9#1489 mid servo position
+            pi.set_servo_pulsewidth(servoPin, directionPosition)
                 #Set servo To directionPosition
                 
     elif x==bytes('s', 'UTF-8'):
