@@ -173,6 +173,8 @@ while(1):
         elif buzzer == True:
             GPIO.output(buzzerPin,GPIO.LOW)
             buzzer = False
+    elif x==bytes('au','UTF-8'):
+        #Auton Mode
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
