@@ -30,7 +30,7 @@ def return_data():
     except OSError:
         pass
 bluetoothAddress = "B8:27:EB:D6:57:CE"  #"DC:A6:32:6B:38:BD" 
-stickDeadband = 5
+stickDeadband = 2
 
 logger = Logger("clientLog")
 sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
