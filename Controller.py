@@ -80,17 +80,6 @@ while True:
             elif event.type == pygame.JOYBUTTONUP:
                 if j.get_button(0):
                     squareUp()
-            #if event.type == pygame.JOYAXISMOTION:
-                #logger.info("EVENT JOYAXISMOTION")
-                #speed = round(j.get_axis(1) * -100)
-                #direction = round(j.get_axis(3) * 100) #axis 0
-                #if direction < stickDeadband and direction > -stickDeadband:
-                    #direction = 0
-                #if speed > -101 and direction > -101:
-                    #logger.info("M:" + str(speed) + ":D:" + str(direction))
-                    #sock.send(":M:" + str(speed) + ":D:" + str(direction))
-                 #if M: is Positive, go forward, If M is negative, go backwards
-                 #If D: is positive Go Right, D: is negative go Left
         x=return_data()
         if x is not None:
             if bytes(':','UTF-8') in x:
