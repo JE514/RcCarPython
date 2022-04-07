@@ -85,11 +85,11 @@ def getDrive():
 def getLogger():
     return logger
 
-def getEnabled():
-    return enabled
-
 def getAutonEnabled():
     return autonEnabled
+
+def getConstants():
+    return [motorNeutralSpeed,directionTicksPer,enabled,motorMinSpeed,motorMaxSpeed]
 
 
     
