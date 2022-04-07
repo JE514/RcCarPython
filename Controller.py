@@ -43,6 +43,10 @@ j.init()
 def enableRobot():
     sock.send("en")
     logger.info("Robot: Sending Enable Request!")
+def enableAutonMode():
+    logger.info("Robot: Enabled Autonomous Mode!")
+def disableAutonMode():
+    logger.info("Robot: Disabled Autonomous Mode!")
     
 def stopRobot():
     sock.send("s")
@@ -53,7 +57,7 @@ def squareDown():
 def squareUp():
     sock.send("ho")
  
-enableRobot()
+#enableRobot()
 
 def loop():
     sleep(0.02) #sleep 20 ms
@@ -75,11 +79,18 @@ while True:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.JOYBUTTONDOWN:
-                if j.get_button(0):
+                if j.get_button(0): #square
                     squareDown()
+                if j.get_button(1): #X
+                     enableRobot()
+                if j.get_button(2): #circle
+                    enableAutonMode()
+                if j.get_button(3): #triangle
+                    disableAutonMode()
             elif event.type == pygame.JOYBUTTONUP:
-                if j.get_button(0):
+                if j.get_button(0): #square
                     squareUp()
+                
         x=return_data()
         if x is not None:
             if bytes(':','UTF-8') in x:
