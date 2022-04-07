@@ -11,6 +11,7 @@ motorNeutralSpeed = 1500
 motorMinSpeed = 1000
 motorMaxSpeed = 2000
 enabled = False
+autonEnabled = False
 ultrasonicSensorEnabled = False
 servoPin = 18
 ESC = 4
@@ -77,6 +78,20 @@ def enableRobot():
     #enabledAlert(0.5, 3) #3 long enable robot
     enabled = True
     logger.info("Robot: Robot Enabled")
+    
+def getDrive():
+    return [pi, ESC, servoPin]
+    
+def getLogger():
+    return logger
+
+def getEnabled():
+    return enabled
+
+def getAutonEnabled():
+    return autonEnabled
+
+
     
 def return_data():
     try:
@@ -175,6 +190,7 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
+        autonEnabled = True
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
