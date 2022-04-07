@@ -1,5 +1,6 @@
 import PowerWheels
 from sensor import ultrasonicRead
+#import pigpio #MIGHT NEED
 pi, ESC, servo = PowerWheels.getDrive()
 logger = PowerWheels.getLogger()
 motorNeutralSpeed, directionTicksPer, enabled, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
