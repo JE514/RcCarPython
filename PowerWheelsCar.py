@@ -14,6 +14,7 @@ motorMaxSpeed = 2000
 enabled = False
 autonEnabled = False
 ultrasonicSensorEnabled = False
+buzzer = False
 servoPin = 18
 ESC = 4
 temp1=1
