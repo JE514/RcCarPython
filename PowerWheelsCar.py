@@ -76,7 +76,7 @@ logger.info("Bluetooth: Device connected!")
 
     
 def enableRobot():
-    arm() #TRYING WITHOUT ARMING SEQUENCE
+    #arm() #TRYING WITHOUT ARMING SEQUENCE
     #enabledAlert(0.5, 3) #3 long enable robot
     enabled = True
     logger.info("Robot: Robot Enabled")
@@ -150,12 +150,6 @@ while(1):
             elif speed < 0: #0
                 pi.set_servo_pulsewidth(ESC, motorNeutralSpeed + speed * 5)
             else:
-                logger.info("ESC: SET PULSEWIDTH TO 0")
-                logger.info("ESC: SET PULSEWIDTH TO 0")
-                logger.info("ESC: SET PULSEWIDTH TO 0")
-                logger.info("ESC: SET PULSEWIDTH TO 0")
-                logger.info("ESC: SET PULSEWIDTH TO 0")
-                logger.info("ESC: SET PULSEWIDTH TO 0")
                 pi.set_servo_pulsewidth(ESC, 0)
             if direction < 0:
                 directionPosition = -direction * directionTicksPer * 9.36 + 1489 # TEMP  
