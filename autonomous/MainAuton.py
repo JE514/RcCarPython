@@ -27,20 +27,19 @@ def getAutonEnabled():
 
 def enableAuton(enabled, mode=0):
   if getAutonEnabled() == True and enabled == True:
-    logger.info("Auton: Already Enabled")
+    logger.info("Auton: Already Enabled.")
   elif getAutonEnabled() == False and enabled == False:
-    logger.info("Auton: Already Disabled")
+    logger.info("Auton: Already Disabled.")
   elif enabled == True:
     if autonMode != 0:
       autonMode = mode
       PowerWheels.setAutonMode(mode)
-    logger.info("Auton: Enabling Auton In Mode " + autonMode)
+    logger.info("Auton: Enabling Autonomous In Mode " + autonMode)
   else:
-    logger.info("Auton: Disabling Auton")
+    logger.info("Auton: Disabling Autonomous...")
 
   
-while PowerWheels.getAutonEnabled():
-  logger.info("Auton: Autonomous Mode Active.")
+while autonEnabled:
   distance = ultrasonicRead()
   
   if autonMode == 1: #simple auton mode 
