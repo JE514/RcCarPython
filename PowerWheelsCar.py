@@ -91,8 +91,6 @@ def getDrive():
 def getLogger():
     return logger
 
-def getAutonEnabled():
-    return autonEnabled
 
 def getConstants():
     return [motorNeutralSpeed,directionTicksPer,enabled,motorMinSpeed,motorMaxSpeed,autonMode]
@@ -200,7 +198,8 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
-        autonEnabled = True
+        #MainAuton.enableAuton(True, 1)
+        #autonEnabled = MainAuton.getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
