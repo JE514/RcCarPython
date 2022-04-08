@@ -100,7 +100,8 @@ def getConstants():
 def getSocket():
     return [client_socket, disconnected]
 
-
+def setAutonMode(mode):
+    autonMode = mode
     
 def return_data():
     try:
