@@ -3,7 +3,7 @@ from sensor import ultrasonicRead
 #import pigpio #MIGHT NEED
 pi, ESC, servo = PowerWheels.getDrive()
 logger = PowerWheels.getLogger()
-motorNeutralSpeed, directionTicksPer, enabled, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
+motorNeutralSpeed, directionTicksPer, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
 sock, disconnected = PowerWheels.getSocket()
 autonEnabled = False
 distance = 0.0
@@ -17,6 +17,13 @@ def driveMotor(speedPercent):
     speed = speedPercent*5+motorNeutralSpeed
   driveSpeed = speed
   pi.set_servo_pulsewidth(ESC, speed)
+
+def steerServo(steerPercent):
+  steer = 0.0
+  if steerPercent > 0:
+    steer = 2.0 #TEMP
+  else:
+    steer = 1.0 #TEMP
   
 def getDriveSpeed():
   return driveSpeed
@@ -45,7 +52,7 @@ def enableAuton(enabled, mode=0):
   
 while autonEnabled:
   distance = ultrasonicRead()
-  if disconnected == False:
+  if disconnected == False and PowerWheels.isRobotEnabled() == True:
     
     if autonMode == 1: #simple auton mode 
       if getDriveSpeed() != 20.0:
