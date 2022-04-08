@@ -43,11 +43,11 @@ j = pygame.joystick.Joystick(0)
 j.init()
 def enableRobot():
     sock.send("en")
-    logger.info("Robot: Sending Enable Request!")
+    logger.info("Controller: Sending Enable Request!")
 def enableAutonMode():
-    logger.info("Robot: Enabled Autonomous Mode!")
+    logger.info("Controler: Enabled Autonomous Mode!")
 def disableAutonMode():
-    logger.info("Robot: Disabled Autonomous Mode!")
+    logger.info("Controler: Disabled Autonomous Mode!")
     
 def stopRobot():
     sock.send("s")
@@ -97,6 +97,9 @@ while True:
             if bytes(':','UTF-8') in x:
                 xd = x.decode('UTF-8').split(":")[1]
                 print("Collision warning " + xd + " cm")
+            else:
+                data = return_data().replace("b'", "").replace("'","")
+                logger.info(data)
               
   
                
