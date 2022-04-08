@@ -84,7 +84,7 @@ while True:
                     squareDown()
                 if j.get_button(1): #circle
                      enableRobot()
-                if j.get_button(2): #IDK
+                if j.get_button(2): #SQUARE and triangle??? wtf
                     enableAutonMode()
                 if j.get_button(3): #IDK
                     disableAutonMode()
