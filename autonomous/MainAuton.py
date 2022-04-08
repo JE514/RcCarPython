@@ -5,6 +5,8 @@ pi, ESC, servo = PowerWheels.getDrive()
 logger = PowerWheels.getLogger()
 motorNeutralSpeed, directionTicksPer, enabled, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
 sock, disconnected = PowerWheels.getSocket()
+autonEnabled = False
+distance = 0.0
 driveSpeed = 0.0
 
 def driveMotor(speedPercent):
@@ -18,6 +20,23 @@ def driveMotor(speedPercent):
   
 def getDriveSpeed():
   return driveSpeed
+
+def getAutonEnabled():
+  return autonEnabled
+
+
+def enableAuton(enabled, mode=0):
+  if getAutonEnabled() == True and enabled == True:
+    logger.info("Auton: Already Enabled")
+  elif getAutonEnabled() == False and enabled == False:
+    logger.info("Auton: Already Disabled")
+  elif enabled == True:
+    if autonMode != 0:
+      autonMode = mode
+      PowerWheels.setAutonMode(mode)
+    logger.info("Auton: Enabling Auton In Mode " + autonMode)
+  else:
+    logger.info("Auton: Disabling Auton")
 
   
 while PowerWheels.getAutonEnabled():
