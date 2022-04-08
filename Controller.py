@@ -80,13 +80,13 @@ while True:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.JOYBUTTONDOWN:
-                if j.get_button(0): #square
+                if j.get_button(0): #IDK
                     squareDown()
-                if j.get_button(1): #X
+                if j.get_button(1): #circle
                      enableRobot()
-                if j.get_button(2): #circle
+                if j.get_button(2): #IDK
                     enableAutonMode()
-                if j.get_button(3): #triangle
+                if j.get_button(3): #IDK
                     disableAutonMode()
             elif event.type == pygame.JOYBUTTONUP:
                 if j.get_button(0): #square
