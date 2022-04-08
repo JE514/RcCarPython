@@ -19,7 +19,8 @@ servoPin = 18
 ESC = 4
 temp1=1
 buzzerPin=17
-directionTicksPer = 1 #(Ticks of rotation)/100 #100 is for input value
+servoNeutralPosition = 1700 #1488 for 556-2420 & 1700 for 1500-1900
+directionTicksPer = 2 #(Ticks of rotation)/100 #100 is for input value
 os.system ("sudo pigpiod")
 time.sleep(1)
 logger = Logger("robotLog")
@@ -81,6 +82,7 @@ def enableRobot():
     #enabledAlert(0.5, 3) #3 long enable robot
     enabled = True
     logger.info("Robot: Robot Enabled")
+    client_socket.send("Robot: Enabled Robot")
     
 def getDrive():
     return [pi, ESC, servoPin]
@@ -163,9 +165,9 @@ while(1):
             else:
                 pi.set_servo_pulsewidth(ESC, 0)
             if direction < 0:
-                directionPosition = -direction * directionTicksPer * 9.36 + 1489 # TEMP  
+                directionPosition = -direction * directionTicksPer + servoNeutralPosition #* 9.36 + 1489 # TEMP  
             else:
-                directionPosition = 1489 - direction * directionTicksPer * 9.36#1489 mid servo position
+                directionPosition = servoNeutralPosition - direction * directionTicksPer   # 1489 - direction * directionTicksPer #* 9.36        #1489 mid servo position
             pi.set_servo_pulsewidth(servoPin, directionPosition)
                 #Set servo To directionPosition
                 
