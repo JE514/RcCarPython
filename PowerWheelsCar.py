@@ -93,7 +93,10 @@ def getLogger():
 
 
 def getConstants():
-    return [motorNeutralSpeed,directionTicksPer,enabled,motorMinSpeed,motorMaxSpeed,autonMode]
+    return [motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode]
+
+def isRobotEnabled():
+    return enabled
 
 def getSocket():
     return [client_socket, disconnected]
