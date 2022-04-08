@@ -13,6 +13,7 @@ motorMinSpeed = 1000
 motorMaxSpeed = 2000
 enabled = False
 autonEnabled = False
+disconnected = False
 ultrasonicSensorEnabled = False
 buzzer = False
 servoPin = 18
@@ -95,6 +96,9 @@ def getAutonEnabled():
 
 def getConstants():
     return [motorNeutralSpeed,directionTicksPer,enabled,motorMinSpeed,motorMaxSpeed,autonMode]
+
+def getSocket():
+    return [client_socket, disconnected]
 
 
     
