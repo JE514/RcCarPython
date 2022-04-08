@@ -21,7 +21,7 @@ ESC = 4
 temp1=1
 buzzerPin=17
 servoNeutralPosition = 1488 #1488 for 556-2420 & 1700 for 1500-1900
-directionTicksPer = 12 #(Ticks of rotation)/100 #100 is for input value 2
+directionTicksPer = 9.36 #(Ticks of rotation)/100 #100 is for input value 2
 os.system ("sudo pigpiod")
 time.sleep(1)
 logger = Logger("robotLog")
