@@ -4,6 +4,7 @@ from sensor import ultrasonicRead
 pi, ESC, servo = PowerWheels.getDrive()
 logger = PowerWheels.getLogger()
 motorNeutralSpeed, directionTicksPer, enabled, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
+sock, disconnected = PowerWheels.getSocket()
 driveSpeed = 0.0
 
 def driveMotor(speedPercent):
