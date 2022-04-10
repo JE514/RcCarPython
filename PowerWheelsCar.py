@@ -8,7 +8,7 @@ from sensor import ultrasonicRead
 from Logger import Logger
 import pigpio 
 sys.path.append('/Desktop/RcCarProject/RcCarPython')
-from autonomous import MainAuton
+import MainAuton
 
 autonMode = 1
 motorNeutralSpeed = 1500
