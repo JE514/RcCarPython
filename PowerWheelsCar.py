@@ -96,7 +96,7 @@ def setConstants():
     MainAuton.setConstants(pi,ESC,servo,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
 
 def updateVariables():
-    MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled):
+    MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled)
 
     
 def return_data():
