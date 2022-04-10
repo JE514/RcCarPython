@@ -5,6 +5,7 @@ import time
 import os 
 from sensor import ultrasonicRead
 from Logger import Logger
+import MainAuton
 import pigpio 
 
 autonMode = 1
@@ -201,8 +202,8 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
-        #MainAuton.enableAuton(True, 1)
-        #autonEnabled = MainAuton.getAutonEnabled()
+        MainAuton.enableAuton(True, 1)
+        autonEnabled = MainAuton.getAutonEnabled()
         logger.info("Attempted to enable auton")
     else:
         client_socket.send("<<<  wrong data  >>>")
