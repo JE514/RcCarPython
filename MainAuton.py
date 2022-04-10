@@ -1,15 +1,18 @@
 import sys
 #sys.path.append('/Desktop/RcCarProject')
-import PowerWheelsCar
+from PowerWheelsCar import getConstants
 from sensor import ultrasonicRead
 #import pigpio #MIGHT NEED
-pi, ESC, servo = PowerWheels.getDrive()
-logger = PowerWheels.getLogger()
-motorNeutralSpeed, directionTicksPer, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
-sock, disconnected = PowerWheels.getSocket()
 autonEnabled = False
 distance = 0.0
 driveSpeed = 0.0
+
+def __init__(self):
+  from PowerWheelsCar import getConstants, getDrive, getLogger, getSocket, setAutonMode, isRobotEnabled
+  pi, ESC, servo = PowerWheels.getDrive()
+  logger = PowerWheels.getLogger()
+  motorNeutralSpeed, directionTicksPer, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
+  sock, disconnected = PowerWheels.getSocket()
 
 def driveMotor(speedPercent):
   speed = 0.0
