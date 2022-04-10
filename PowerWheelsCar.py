@@ -212,12 +212,12 @@ while(1):
         
         #from MainAuton import getAutonEnabled, enableAuton
         if autonEnabled == False:
-            getMainAuton().enableAuton(True, 1)
-            autonEnabled = getMainAuton().getAutonEnabled()
+            getMainAuton(self).enableAuton(True, 1)
+            autonEnabled = getMainAuton(self).getAutonEnabled()
             logger.info("Attempted to enable auton")
         elif autonEnabled == True:
-            getMainAuton().enableAuton(False)
-            autonEnabled = getMainAuton().getAutonEnabled()
+            getMainAuton(self).enableAuton(False)
+            autonEnabled = getMainAuton(self).getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
