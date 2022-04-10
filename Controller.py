@@ -85,9 +85,9 @@ while True:
                     squareDown()
                 if j.get_button(1): #circle
                      enableRobot()
-                if j.get_button(2): #SQUARE and triangle??? wtf
+                if j.get_button(2): #Triangle wtf
                     enableAutonMode()
-                if j.get_button(3): #IDK
+                if j.get_button(3): #Square
                     disableAutonMode()
             elif event.type == pygame.JOYBUTTONUP:
                 if j.get_button(0): #square
