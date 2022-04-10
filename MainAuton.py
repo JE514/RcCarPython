@@ -5,6 +5,7 @@ from sensor import ultrasonicRead
 autonEnabled = False
 distance = 0.0
 driveSpeed = 0.0
+logger = False
 
  
 def setConstants(pi2,ESC2,servo2,logger2,motorNeutralSpeed2,directionTicksPer2,motorMinSpeed2,motorMaxSpeed2,autonMode2,sock2,disconnected2,isRobotEnabled2, autonEnabled2):
