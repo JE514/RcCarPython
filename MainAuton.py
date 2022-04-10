@@ -57,19 +57,19 @@ def getAutonEnabled():
 
 def enableAuton(enabled, mode=0):
   if getAutonEnabled() == True and enabled == True:
-    logger.info("Auton: Already Enabled.")
+    #logger.info("Auton: Already Enabled.")
     sock.send("Auton: Already Enabled.")
   elif getAutonEnabled() == False and enabled == False:
-    logger.info("Auton: Already Disabled.")
+    #logger.info("Auton: Already Disabled.")
     sock.send("Auton: Already Disabled.")
   elif enabled == True:
     if mode != 0:
       autonMode = mode
       #setAutonMode(mode)
-    logger.info("Auton: Enabling Autonomous In Mode " + autonMode)
+    #logger.info("Auton: Enabling Autonomous In Mode " + autonMode)
     sock.send("Auton: Enabling Autonomous In Mode " + autonMode)
   else:
-    logger.info("Auton: Disabling Autonomous...")
+    #logger.info("Auton: Disabling Autonomous...")
     sock.send("Auton: Disabling Autonomous...")
 
   
