@@ -92,8 +92,8 @@ def enableRobot():
     
 
 def setConstants():
-    constantsSet = True
     MainAuton.setConstants(pi,ESC,servoPin,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
+    constantsSet = True
 
 def updateVariables():
     MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled)
@@ -200,7 +200,6 @@ while(1):
         #from MainAuton import getAutonEnabled, enableAuton
         if constantsSet == False:
             setConstants()
-            constantsSet = True
         else:
             updateVariables()
         if autonEnabled == False:
