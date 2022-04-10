@@ -1,6 +1,5 @@
 import sys
 #sys.path.append('/Desktop/RcCarProject')
-from PowerWheelsCar import getConstants
 from sensor import ultrasonicRead
 #import pigpio #MIGHT NEED
 autonEnabled = False
