@@ -93,7 +93,7 @@ def enableRobot():
 
 def setConstants():
     constantsSet = True
-    MainAuton.setConstants(pi,ESC,servo,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
+    MainAuton.setConstants(pi,ESC,servoPin,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
 
 def updateVariables():
     MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled)
