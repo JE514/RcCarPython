@@ -44,7 +44,7 @@ def enableAuton(enabled, mode=0):
     logger.info("Auton: Already Disabled.")
     sock.send("Auton: Already Disabled.")
   elif enabled == True:
-    if autonMode != 0:
+    if mode != 0:
       autonMode = mode
       setAutonMode(mode)
     logger.info("Auton: Enabling Autonomous In Mode " + autonMode)
