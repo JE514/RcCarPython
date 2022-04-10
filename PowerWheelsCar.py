@@ -39,6 +39,12 @@ port = 1
 pi = pigpio.pi();
 pi.set_servo_pulsewidth(ESC, 0)
 
+def __init__(self):
+    import MainAuton
+    self.MainAuto = MainAuton()
+    
+def getMainAuton(self):
+    return self.MainAuto
 server_socket = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 server_socket.bind((bd_addr, bluetooth.PORT_ANY))
 server_socket.listen(port)
@@ -203,15 +209,15 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
-        import MainAuton
+        
         #from MainAuton import getAutonEnabled, enableAuton
         if autonEnabled == False:
-            MainAuton.enableAuton(True, 1)
-            autonEnabled = MainAuton.getAutonEnabled()
+            getMainAuton.enableAuton(True, 1)
+            autonEnabled = getMainAuton.getAutonEnabled()
             logger.info("Attempted to enable auton")
         elif autonEnabled == True:
-            MainAuton.enableAuton(False)
-            autonEnabled = MainAuton.getAutonEnabled()
+            getMainAuton.enableAuton(False)
+            autonEnabled = getMainAuton.getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
