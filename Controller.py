@@ -44,8 +44,9 @@ j.init()
 def enableRobot():
     sock.send("en")
     logger.info("Controller: Sending Enable Request!")
-def enableAutonMode():
-    logger.info("Controler: Enabled Autonomous Mode!")
+def toggleAutonMode():
+    sock.send("au")
+    logger.info("Controler: Autonomous Mode Toggled!")
 def disableAutonMode():
     logger.info("Controler: Disabled Autonomous Mode!")
     
