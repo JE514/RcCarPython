@@ -29,6 +29,7 @@ directionTicksPer = 9.36 #(Ticks of rotation)/100 #100 is for input value 2
 os.system ("sudo pigpiod")
 time.sleep(1)
 logger = Logger("robotLog")
+MainAuton = MainAuton()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(buzzerPin, GPIO.OUT)
