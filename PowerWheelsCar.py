@@ -42,9 +42,10 @@ pi.set_servo_pulsewidth(ESC, 0)
 def __init__(self):
     import MainAuton
     self.MainAuto = MainAuton()
+    selfx = self
     
-def getMainAuton(self):
-    return self.MainAuto
+def getMainAuton():
+    return selfx.MainAuto
 server_socket = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 server_socket.bind((bd_addr, bluetooth.PORT_ANY))
 server_socket.listen(port)
@@ -212,12 +213,12 @@ while(1):
         
         #from MainAuton import getAutonEnabled, enableAuton
         if autonEnabled == False:
-            getMainAuton(self).enableAuton(True, 1)
-            autonEnabled = getMainAuton(self).getAutonEnabled()
+            getMainAuton().enableAuton(True, 1)
+            autonEnabled = getMainAuton().getAutonEnabled()
             logger.info("Attempted to enable auton")
         elif autonEnabled == True:
-            getMainAuton(self).enableAuton(False)
-            autonEnabled = getMainAuton(self).getAutonEnabled()
+            getMainAuton().enableAuton(False)
+            autonEnabled = getMainAuton().getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
