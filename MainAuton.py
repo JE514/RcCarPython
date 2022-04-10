@@ -6,22 +6,30 @@ autonEnabled = False
 distance = 0.0
 driveSpeed = 0.0
 
-def populate():
-  import PowerWheelsCar
-  logger.info("Initialized PowerWheelsCar Class")
-  #from PowerWheelsCar import getConstants, getDrive, getLogger, getSocket, setAutonMode, isRobotEnabled
-  pi, ESC, servo = PowerWheelsCar.getDrive() #PowerWheels.
-  logger = PowerWheelsCar.getLogger()
-  motorNeutralSpeed, directionTicksPer, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheelsCar.getConstants()
-  sock, disconnected = PowerWheelsCar.getSocket()
+ 
+def setConstants(pi2,ESC2,servo2,logger2,motorNeutralSpeed2,directionTicksPer2,motorMinSpeed2,motorMaxSpeed2,autonMode2,sock2,disconnected2,isRobotEnabled2, autonEnabled2):
+  pi = pi2
+  ESC = ESC2
+  servo = servo2
+  logger = logger2
+  motorNeutralSpeed = motorNeutralSpeed2
+  directionTicksPer = directionTicksPer2
+  motorMinSpeed = motorMinSpeed2
+  autonMode = autonMode2
+  sock = sock2
+  disconnected = disconnected2
+  isRobotEnabled = isRobotEnabled2
+  autonEnabled = autonEnabled2
   
-def getAutonMode(mode):
-  import PowerWheelsCar
-  return PowerWheelsCar.setAutonMode(mode)
+def updateVariables(sock2, disconnected2, isRobotEnabled2, autonEnabled2):
+  sock = sock2
+  disconnected = disconnected2
+  isRobotEnabled = isRobotEnabled2
+  autonEnabled = autonEnabled2
 
-def getIsRobotEnabled():
-  import PowerWheelsCar
-  return PowerWheelsCar.isRobotEnabled()
+def getVariables():
+  return autonMode
+  
 
 def driveMotor(speedPercent):
   speed = 0.0
@@ -67,7 +75,7 @@ def enableAuton(enabled, mode=0):
   
 while autonEnabled:
   distance = ultrasonicRead()
-  if disconnected == False and getIsRobotEnabled() == True:#isRobotEnabled() == True:
+  if disconnected == False and isRobotEnabled == True:#isRobotEnabled() == True:
     
     if autonMode == 1: #simple auton mode 
       if getDriveSpeed() != 20.0:
