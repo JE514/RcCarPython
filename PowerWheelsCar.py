@@ -7,7 +7,7 @@ import sys
 from sensor import ultrasonicRead
 from Logger import Logger
 import pigpio 
-import MainAuton
+#import MainAuton
 sys.path.append('/Desktop/RcCarProject/RcCarPython')
 
 autonMode = 1
@@ -23,7 +23,7 @@ servoPin = 18
 ESC = 4
 temp1=1
 buzzerPin=17
-constantsSet = False
+#constantsSet = False
 servoNeutralPosition = 1488 #1488 for 556-2420 & 1700 for 1500-1900
 directionTicksPer = 9.36 #(Ticks of rotation)/100 #100 is for input value 2
 os.system ("sudo pigpiod")
@@ -91,12 +91,12 @@ def enableRobot():
     client_socket.send("Robot: Enabled Robot")
     
 
-def setConstants():
-    MainAuton.setConstants(pi,ESC,servoPin,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
-    constantsSet = True
+#def setConstants():
+   # MainAuton.setConstants(pi,ESC,servoPin,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
+    #constantsSet = True
 
-def updateVariables():
-    MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled)
+#def updateVariables():
+   # MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled)
 
     
 def return_data():
@@ -198,17 +198,17 @@ while(1):
         #Auton Mode
         
         #from MainAuton import getAutonEnabled, enableAuton
-        if constantsSet == False:
-            setConstants()
-        else:
-            updateVariables()
-        if autonEnabled == False:
-            MainAuton.enableAuton(True, 1)
-            autonEnabled = MainAuton.getAutonEnabled()
-            logger.info("Attempted to enable auton")
-        elif autonEnabled == True:
-            MainAuton.enableAuton(False)
-            autonEnabled = MainAuton.getAutonEnabled()
+        #if constantsSet == False:
+            #setConstants()
+        #else:
+            #updateVariables()
+       # if autonEnabled == False:
+            #MainAuton.enableAuton(True, 1)
+            #autonEnabled = MainAuton.getAutonEnabled()
+            #logger.info("Attempted to enable auton")
+        #elif autonEnabled == True:
+            #MainAuton.enableAuton(False)
+            #autonEnabled = MainAuton.getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
