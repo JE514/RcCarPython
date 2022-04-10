@@ -86,7 +86,7 @@ while True:
                 if j.get_button(1): #circle
                      enableRobot()
                 if j.get_button(2): #Triangle wtf
-                    enableAutonMode()
+                    toggleAutonMode()
                 if j.get_button(3): #Square
                     disableAutonMode()
             elif event.type == pygame.JOYBUTTONUP:
