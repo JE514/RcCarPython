@@ -9,10 +9,10 @@ driveSpeed = 0.0
 
 def __init__(self):
   from PowerWheelsCar import getConstants, getDrive, getLogger, getSocket, setAutonMode, isRobotEnabled
-  pi, ESC, servo = PowerWheels.getDrive()
-  logger = PowerWheels.getLogger()
-  motorNeutralSpeed, directionTicksPer, motorMinSpeed, motorMaxSpeed, autonMode = PowerWheels.getConstants()
-  sock, disconnected = PowerWheels.getSocket()
+  pi, ESC, servo = getDrive() #PowerWheels.
+  logger = getLogger()
+  motorNeutralSpeed, directionTicksPer, motorMinSpeed, motorMaxSpeed, autonMode = getConstants()
+  sock, disconnected = getSocket()
 
 def driveMotor(speedPercent):
   speed = 0.0
@@ -47,7 +47,7 @@ def enableAuton(enabled, mode=0):
   elif enabled == True:
     if autonMode != 0:
       autonMode = mode
-      PowerWheels.setAutonMode(mode)
+      setAutonMode(mode)
     logger.info("Auton: Enabling Autonomous In Mode " + autonMode)
     sock.send("Auton: Enabling Autonomous In Mode " + autonMode)
   else:
@@ -57,7 +57,7 @@ def enableAuton(enabled, mode=0):
   
 while autonEnabled:
   distance = ultrasonicRead()
-  if disconnected == False and PowerWheels.isRobotEnabled() == True:
+  if disconnected == False and isRobotEnabled() == True:
     
     if autonMode == 1: #simple auton mode 
       if getDriveSpeed() != 20.0:
