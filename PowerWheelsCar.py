@@ -8,7 +8,7 @@ from sensor import ultrasonicRead
 from Logger import Logger
 import MainAuton
 import pigpio 
-sys.path.append('/Desktop/RcCarProject/RcCarPython)
+sys.path.append('/Desktop/RcCarProject/RcCarPython')
 from autonomous import MainAuton
 
 autonMode = 1
