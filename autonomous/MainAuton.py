@@ -60,7 +60,7 @@ while autonEnabled:
       if distance < 10:
         logger.info("Auton: Distance within 10, Stopping Robot...")
         driveMotor(0.0)
-   if autonMode == 2: #simple(But Fast) auton mode 
+    if autonMode == 2: #simple(But Fast) auton mode 
       if getDriveSpeed() != 50.0:
         driveMotor(50.0)
       if distance < 10:
