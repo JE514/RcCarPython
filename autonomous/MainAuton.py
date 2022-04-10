@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/Desktop/RcCarProject/RcCarPython')
 import PowerWheels
 from sensor import ultrasonicRead
 #import pigpio #MIGHT NEED
