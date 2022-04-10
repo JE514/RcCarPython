@@ -3,10 +3,13 @@ import RPi.GPIO as GPIO
 from time import sleep
 import time
 import os 
+import sys
 from sensor import ultrasonicRead
 from Logger import Logger
 import MainAuton
 import pigpio 
+sys.path.append('/Desktop/RcCarProject/RcCarPython)
+from autonomous import MainAuton
 
 autonMode = 1
 motorNeutralSpeed = 1500
