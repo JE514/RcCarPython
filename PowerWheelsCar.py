@@ -8,7 +8,6 @@ from sensor import ultrasonicRead
 from Logger import Logger
 import pigpio 
 sys.path.append('/Desktop/RcCarProject/RcCarPython')
-from MainAuton import getAutonEnabled, enableAuton
 
 autonMode = 1
 motorNeutralSpeed = 1500
@@ -204,13 +203,14 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
+        from MainAuton import getAutonEnabled, enableAuton
         if autonEnabled == False:
-            MainAuton.enableAuton(True, 1)
-            autonEnabled = MainAuton.getAutonEnabled()
+            enableAuton(True, 1)
+            autonEnabled = getAutonEnabled()
             logger.info("Attempted to enable auton")
         elif autonEnabled == True:
-            MainAuton.enableAuton(False)
-            autonEnabled = MainAuton.getAutonEnabled()
+            enableAuton(False)
+            autonEnabled = getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
