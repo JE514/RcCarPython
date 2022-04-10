@@ -203,14 +203,15 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
-        from MainAuton import getAutonEnabled, enableAuton
+        import MainAuton
+        #from MainAuton import getAutonEnabled, enableAuton
         if autonEnabled == False:
-            enableAuton(True, 1)
-            autonEnabled = getAutonEnabled()
+            MainAuton.enableAuton(True, 1)
+            autonEnabled = MainAuton.getAutonEnabled()
             logger.info("Attempted to enable auton")
         elif autonEnabled == True:
-            enableAuton(False)
-            autonEnabled = getAutonEnabled()
+            MainAuton.enableAuton(False)
+            autonEnabled = MainAuton.getAutonEnabled()
     else:
         client_socket.send("<<<  wrong data  >>>")
         client_socket.send("please enter the defined data to continue.....")
