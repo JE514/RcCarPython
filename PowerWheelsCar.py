@@ -7,6 +7,7 @@ import sys
 from sensor import ultrasonicRead
 from Logger import Logger
 import pigpio 
+import MainAuton
 sys.path.append('/Desktop/RcCarProject/RcCarPython')
 
 autonMode = 1
@@ -22,6 +23,7 @@ servoPin = 18
 ESC = 4
 temp1=1
 buzzerPin=17
+constantsSet = False
 servoNeutralPosition = 1488 #1488 for 556-2420 & 1700 for 1500-1900
 directionTicksPer = 9.36 #(Ticks of rotation)/100 #100 is for input value 2
 os.system ("sudo pigpiod")
@@ -88,24 +90,14 @@ def enableRobot():
     logger.info("Robot: Robot Enabled")
     client_socket.send("Robot: Enabled Robot")
     
-def getDrive():
-    return [pi, ESC, servoPin]
-    
-def getLogger():
-    return logger
 
+def setConstants():
+    constantsSet = True
+    MainAuton.setConstants(pi,ESC,servo,logger,motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode,client_socket,disconnected,enabled,autonEnabled)
 
-def getConstants():
-    return [motorNeutralSpeed,directionTicksPer,motorMinSpeed,motorMaxSpeed,autonMode]
+def updateVariables():
+    MainAuton.updateVariables(client_socket, disconnected, enabled, autonEnabled):
 
-def isRobotEnabled():
-    return enabled
-
-def getSocket():
-    return [client_socket, disconnected]
-
-def setAutonMode(mode):
-    autonMode = mode
     
 def return_data():
     try:
@@ -206,8 +198,12 @@ while(1):
         #Auton Mode
         
         #from MainAuton import getAutonEnabled, enableAuton
+        if constantsSet == False:
+            setConstants()
+            constantsSet = True
+        else:
+            updateVariables()
         if autonEnabled == False:
-            import MainAuton
             MainAuton.enableAuton(True, 1)
             autonEnabled = MainAuton.getAutonEnabled()
             logger.info("Attempted to enable auton")
