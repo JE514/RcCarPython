@@ -196,7 +196,7 @@ while(1):
             buzzer = False
     elif x==bytes('au','UTF-8'):
         #Auton Mode
-        
+        logger.info("Auton")
         #from MainAuton import getAutonEnabled, enableAuton
         #if constantsSet == False:
             #setConstants()
